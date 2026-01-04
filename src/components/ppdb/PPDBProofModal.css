@@ -1,0 +1,313 @@
+/* PPDB Proof Modal Styles */
+.ppdb-proof-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease-out;
+}
+
+.ppdb-proof-modal {
+    background: white;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    animation: slideUp 0.3s ease-out;
+}
+
+.ppdb-proof-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #f8fafc;
+}
+
+.ppdb-proof-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-close:hover {
+    background-color: #f1f5f9;
+    color: #ef4444;
+}
+
+.ppdb-proof-content {
+    padding: 40px;
+    overflow-y: auto;
+    background: white;
+    color: #000;
+    /* Force black for print clarity */
+}
+
+/* Printable Area Styling */
+.proof-document {
+    font-family: 'Times New Roman', Times, serif;
+    /* Formal look */
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.proof-letterhead {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 3px double #000;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.school-logo-print {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.school-info {
+    text-align: center;
+    flex: 1;
+}
+
+.school-info h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.school-info p {
+    margin: 2px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.proof-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.proof-title h2 {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin: 0 0 5px 0;
+    text-transform: uppercase;
+}
+
+.proof-title p {
+    font-size: 14px;
+    margin: 0;
+}
+
+.proof-details-box {
+    border: 1px solid #000;
+    padding: 15px;
+    margin-bottom: 25px;
+    display: flex;
+    background: #fdfdfd;
+}
+
+.proof-reg-number {
+    flex: 1;
+    border-right: 1px solid #ddd;
+    padding-right: 15px;
+}
+
+.proof-reg-number label {
+    display: block;
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.proof-reg-number .number {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 1px;
+}
+
+.proof-reg-status {
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.proof-table {
+    width: 100%;
+    margin-bottom: 30px;
+    border-collapse: collapse;
+}
+
+.proof-table td {
+    padding: 8px 5px;
+    vertical-align: top;
+    font-size: 14px;
+}
+
+.td-label {
+    width: 180px;
+    font-weight: bold;
+}
+
+.td-sep {
+    width: 20px;
+    text-align: center;
+}
+
+.proof-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    page-break-inside: avoid;
+}
+
+.proof-note {
+    width: 60%;
+    font-size: 12px;
+    font-style: italic;
+    border: 1px dashed #999;
+    padding: 10px;
+}
+
+.proof-signature {
+    width: 30%;
+    text-align: center;
+}
+
+.sign-place {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.sign-space {
+    height: 80px;
+}
+
+.sign-name {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+/* Modal Actions */
+.ppdb-proof-footer {
+    padding: 20px 24px;
+    border-top: 1px solid #e2e8f0;
+    background: #f8fafc;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* PRINT MEDIA QUERY */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .ppdb-proof-overlay,
+    .ppdb-proof-modal,
+    .ppdb-proof-content,
+    .proof-document,
+    .proof-document * {
+        visibility: visible;
+    }
+
+    .ppdb-proof-overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        background: white;
+        padding: 0;
+        z-index: 9999;
+    }
+
+    .ppdb-proof-modal {
+        box-shadow: none;
+        max-width: 100%;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .ppdb-proof-header,
+    .ppdb-proof-footer {
+        display: none !important;
+    }
+
+    .ppdb-proof-content {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+
+    .proof-document {
+        width: 210mm;
+        /* A4 width */
+        height: auto;
+        padding: 20mm;
+        /* Standard margin */
+        margin: 0 auto;
+    }
+}

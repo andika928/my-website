@@ -1,0 +1,347 @@
+/* ===== PROFILE PAGE STYLES ===== */
+
+/* Hero */
+.profile-hero {
+    padding: calc(100px + var(--space-16)) 0 var(--space-12);
+    background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-900) 100%);
+    text-align: center;
+}
+
+.profile-hero h1 {
+    color: var(--white);
+    font-size: var(--text-h1);
+    margin-bottom: var(--space-4);
+}
+
+.profile-hero p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--text-h3);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* About Section */
+.about-school {
+    background: var(--white);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-12);
+    align-items: center;
+}
+
+.about-image .image-placeholder {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
+    border-radius: var(--radius-2xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    color: var(--white);
+}
+
+.about-image .image-placeholder span {
+    font-size: var(--text-h3);
+    font-weight: var(--font-semibold);
+}
+
+.about-content h2 {
+    margin-bottom: var(--space-6);
+}
+
+.about-content p {
+    color: var(--gray-600);
+    line-height: 1.8;
+    margin-bottom: var(--space-4);
+}
+
+.about-stats {
+    display: flex;
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--gray-200);
+}
+
+.about-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-size: var(--text-h1);
+    font-weight: var(--font-extrabold);
+    color: var(--primary-700);
+}
+
+.stat-text {
+    font-size: var(--text-small);
+    color: var(--gray-500);
+}
+
+/* Vision & Mission */
+.vision-mission {
+    background: var(--gray-50);
+}
+
+.vm-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+}
+
+.vm-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-md);
+}
+
+.vm-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-5);
+}
+
+.vision .vm-icon {
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
+    color: var(--white);
+}
+
+.mission .vm-icon {
+    background: linear-gradient(135deg, var(--accent-green), #1e8449);
+    color: var(--white);
+}
+
+.values .vm-icon {
+    background: linear-gradient(135deg, var(--accent-gold), #d68910);
+    color: var(--white);
+}
+
+.vm-card h3 {
+    font-size: var(--text-h2);
+    margin-bottom: var(--space-4);
+}
+
+.vm-card p {
+    color: var(--gray-600);
+    line-height: 1.7;
+}
+
+.vm-card ul {
+    color: var(--gray-600);
+    line-height: 1.8;
+}
+
+.vm-card ul li {
+    position: relative;
+    padding-left: var(--space-5);
+    margin-bottom: var(--space-2);
+}
+
+.vm-card ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-green);
+    font-weight: bold;
+}
+
+.values-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.value-tag {
+    padding: var(--space-2) var(--space-4);
+    background: var(--primary-100);
+    color: var(--primary-700);
+    border-radius: var(--radius-full);
+    font-size: var(--text-small);
+    font-weight: var(--font-semibold);
+}
+
+/* Facilities */
+.facilities-section {
+    background: var(--white);
+}
+
+.facilities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+}
+
+.facility-card {
+    text-align: center;
+    padding: var(--space-8);
+}
+
+.facility-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--space-4);
+    background: linear-gradient(135deg, var(--primary-100), var(--primary-200));
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-700);
+}
+
+.facility-card h4 {
+    font-size: var(--text-h3);
+    margin-bottom: var(--space-2);
+}
+
+.facility-card p {
+    color: var(--gray-500);
+    font-size: var(--text-small);
+}
+
+/* Achievements */
+.achievements-section {
+    background: var(--gray-50);
+}
+
+.achievements-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.achievement-item {
+    display: flex;
+    gap: var(--space-6);
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.achievement-item:last-child {
+    border-bottom: none;
+}
+
+.achievement-year {
+    flex-shrink: 0;
+    width: 60px;
+    font-family: var(--font-heading);
+    font-size: var(--text-h3);
+    font-weight: var(--font-bold);
+    color: var(--primary-600);
+}
+
+.achievement-content {
+    flex: 1;
+}
+
+.achievement-level {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    margin-bottom: var(--space-2);
+}
+
+.achievement-level.nasional {
+    background: var(--accent-gold-light);
+    color: #8b6914;
+}
+
+.achievement-level.provinsi {
+    background: var(--primary-100);
+    color: var(--primary-700);
+}
+
+.achievement-level.kota {
+    background: var(--accent-green-light);
+    color: var(--accent-green);
+}
+
+.achievement-content h4 {
+    font-size: var(--text-body);
+    font-weight: var(--font-medium);
+    color: var(--gray-700);
+}
+
+/* Gallery */
+.gallery-section {
+    background: var(--white);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+}
+
+.gallery-item {
+    aspect-ratio: 4/3;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.gallery-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--gray-200), var(--gray-300));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    color: var(--gray-500);
+    transition: all var(--transition-base);
+}
+
+.gallery-item:hover .gallery-placeholder {
+    background: linear-gradient(135deg, var(--primary-400), var(--primary-600));
+    color: var(--white);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vm-grid,
+    .facilities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .about-stats {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+
+    .achievement-item {
+        flex-direction: column;
+        gap: var(--space-2);
+    }
+
+    .achievement-year {
+        width: auto;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}

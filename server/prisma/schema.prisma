@@ -1,0 +1,120 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// Enums removed for SQLite compatibility
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("STAFF")
+  createdAt DateTime @default(now())
+  news      News[]
+}
+
+model Student {
+  id                 String        @id @default(uuid())
+  registrationNumber String        @unique
+  name               String
+  nisn               String?
+  dateOfBirth        DateTime
+  placeOfBirth       String
+  address            String
+  gender             String
+  parentName         String
+  parentPhone        String
+  status             String @default("PROSPECTIVE")
+  createdAt          DateTime      @default(now())
+  payments           StudentPayment[]
+}
+
+model News {
+  id        String   @id @default(uuid())
+  title     String
+  slug      String   @unique
+  content   String
+  excerpt   String
+  thumbnail String?
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+  category  String
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Teacher {
+  id        String   @id @default(uuid())
+  name      String
+  nip       String?
+  subject   String
+  photo     String?
+  bio       String?
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  subject   String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model PPDBSubmission {
+  id                    String   @id @default(uuid())
+  registrationId        String   @unique
+  fullName              String
+  birthPlace            String
+  birthDate             DateTime
+  gender                String
+  address               String
+  phone                 String
+  nisn                  String?
+  previousSchool        String
+  previousSchoolAddress String?
+  graduationYear        String
+  parentName            String
+  parentPhone           String
+  documents             String?  // Stored as JSON string
+  status                String   @default("PENDING") // PENDING, VERIFIED, ACCEPTED, REJECTED
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model StudentPayment {
+  id          String   @id @default(uuid())
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id])
+  month       String   // e.g., "January"
+  year        String   // e.g., "2024"
+  amount      Float
+  status      String   @default("PENDING") // PENDING, VERIFYING, PAID, REJECTED
+  proofFile   String?  // Path to uploaded transfer proof
+  paymentDate DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AppSettings {
+  id              String   @id @default("settings")
+  schoolName      String   @default("Sekolah Unggulan")
+  schoolAddress   String?
+  schoolPhone     String?
+  schoolEmail     String?
+  ppdbStatus      String   @default("OPEN") // OPEN, CLOSED
+  ppdbStartDate   DateTime?
+  ppdbEndDate     DateTime?
+  updatedAt       DateTime @updatedAt
+}
