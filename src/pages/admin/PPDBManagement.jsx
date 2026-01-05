@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { UserPlus, Search, CheckCircle, XCircle, Eye, Filter, Loader2, RefreshCw, Trash2, Printer } from 'lucide-react'
 import PPDBProofModal from '../../components/ppdb/PPDBProofModal'
 import './AdminPages.css'
+import API_BASE_URL from '../../config/api'
 
 function PPDBManagement() {
     const [data, setData] = useState([])
@@ -17,7 +18,7 @@ function PPDBManagement() {
         setLoading(true)
         try {
             const token = localStorage.getItem('token')
-            const response = await fetch('http://localhost:5001/api/ppdb', {
+            const response = await fetch(`${API_BASE_URL}/api/ppdb`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -41,7 +42,7 @@ function PPDBManagement() {
         if (!confirm(`Ubah status menjadi ${newStatus}?`)) return
 
         try {
-            const response = await fetch(`http://localhost:5001/api/ppdb/${id}/status`, {
+            const response = await fetch(`${API_BASE_URL}/api/ppdb/${id}/status`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -63,7 +64,7 @@ function PPDBManagement() {
         if (!confirm('Apakah Anda yakin ingin menghapus data calon siswa ini? Data yang dihapus tidak dapat dikembalikan.')) return
 
         try {
-            const response = await fetch(`http://localhost:5001/api/ppdb/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/ppdb/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -173,7 +174,7 @@ function PPDBManagement() {
                                                         return Object.entries(docs).map(([key, path]) => (
                                                             <a
                                                                 key={key}
-                                                                href={`http://localhost:5001/${path.replace(/\\/g, '/')}`}
+                                                                href={`${API_BASE_URL}/${path.replace(/\\/g, '/')}`}
                                                                 target="_blank"
                                                                 rel="noopener noreferrer"
                                                                 style={{ color: '#2563eb', textDecoration: 'underline' }}

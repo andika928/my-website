@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Users, UserPlus, Newspaper, Receipt, ArrowRight, TrendingUp, AlertCircle, CheckCircle, Globe, Home, User, Phone } from 'lucide-react'
 import { studentsData, paymentsData } from '../../data/mockData'
 import './AdminDashboard.css'
+import API_BASE_URL from '../../config/api'
 
 function AdminDashboard() {
     const [ppdbCount, setPpdbCount] = useState(0)
@@ -12,7 +13,7 @@ function AdminDashboard() {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const response = await fetch('http://localhost:5001/api/ppdb')
+                const response = await fetch(`${API_BASE_URL}/api/ppdb`)
                 if (response.ok) {
                     const data = await response.json()
                     setPpdbCount(data.length)
@@ -96,7 +97,7 @@ function AdminDashboard() {
                                         <td>{p.previousSchool}</td>
                                         <td>
                                             <span className={`status-tag ${p.status === 'ACCEPTED' ? 'success' :
-                                                    p.status === 'PENDING' ? 'warning' : 'danger'
+                                                p.status === 'PENDING' ? 'warning' : 'danger'
                                                 }`}>
                                                 {p.status}
                                             </span>

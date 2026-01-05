@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { MapPin, Phone, Mail, Clock, Send, Loader2 } from 'lucide-react'
 import { useSettings } from '../../hooks/useSettings'
 import './ContactPage.css'
+import API_BASE_URL from '../../config/api'
 
 function ContactPage() {
     const { settings } = useSettings()
@@ -31,7 +32,7 @@ function ContactPage() {
         setStatus(null)
 
         try {
-            const response = await fetch('http://localhost:5001/api/contact', {
+            const response = await fetch(`${API_BASE_URL}/api/contact`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)

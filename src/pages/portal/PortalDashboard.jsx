@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Bell, Calendar, Wallet, Newspaper, ArrowRight, CheckCircle, AlertCircle, Clock } from 'lucide-react'
 import { announcementsData, calendarEvents } from '../../data/mockData'
 import './PortalDashboard.css'
+import API_BASE_URL from '../../config/api'
 
 function PortalDashboard() {
     // const recentPayments = paymentsData.filter(p => p.studentId === 1).slice(0, 3)
@@ -19,7 +20,7 @@ function PortalDashboard() {
     const fetchPayments = async () => {
         try {
             const token = localStorage.getItem('token')
-            const response = await fetch('http://localhost:5001/api/spp/my-payments', {
+            const response = await fetch(`${API_BASE_URL}/api/spp/my-payments`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

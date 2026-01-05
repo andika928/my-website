@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import API_BASE_URL from '../config/api';
 
 export const useSettings = () => {
     const [settings, setSettings] = useState(null);
@@ -7,7 +8,7 @@ export const useSettings = () => {
     useEffect(() => {
         const fetchSettings = async () => {
             try {
-                const response = await fetch('http://localhost:5001/api/settings');
+                const response = await fetch(`${API_BASE_URL}/api/settings`);
                 if (response.ok) {
                     const data = await response.json();
                     setSettings(data);

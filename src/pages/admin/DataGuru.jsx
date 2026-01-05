@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Users, Search, Edit, Trash2, Plus, Download, Loader2, Save, X } from 'lucide-react'
 import './AdminPages.css'
+import API_BASE_URL from '../../config/api'
 
 function DataGuru() {
     const [teachers, setTeachers] = useState([])
@@ -19,7 +20,7 @@ function DataGuru() {
     const fetchTeachers = async () => {
         setLoading(true)
         try {
-            const response = await fetch('http://localhost:5001/api/teachers')
+            const response = await fetch(`${API_BASE_URL}/api/teachers`)
             if (response.ok) {
                 const data = await response.json()
                 setTeachers(data)
@@ -65,7 +66,7 @@ function DataGuru() {
     const handleDelete = async (id) => {
         if (!confirm('Apakah Anda yakin ingin menghapus data guru ini?')) return
         try {
-            const response = await fetch(`http://localhost:5001/api/teachers/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/teachers/${id}`, {
                 method: 'DELETE'
             })
             if (response.ok) fetchTeachers()
@@ -77,8 +78,8 @@ function DataGuru() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const url = editMode
-            ? `http://localhost:5001/api/teachers/${currentId}`
-            : 'http://localhost:5001/api/teachers'
+            ? `${API_BASE_URL}/api/teachers/${currentId}`
+            : `${API_BASE_URL}/api/teachers`
         const method = editMode ? 'PUT' : 'POST'
 
         try {

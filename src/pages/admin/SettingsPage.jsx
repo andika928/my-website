@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Settings, Upload, Save, Loader2 } from 'lucide-react'
 import './AdminPages.css'
+import API_BASE_URL from '../../config/api'
 
 function SettingsPage() {
     const [loading, setLoading] = useState(true)
@@ -18,7 +19,7 @@ function SettingsPage() {
     const fetchSettings = async () => {
         setLoading(true)
         try {
-            const response = await fetch('http://localhost:5001/api/settings')
+            const response = await fetch(`${API_BASE_URL}/api/settings`)
             if (response.ok) {
                 const data = await response.json()
                 setSettings({
@@ -53,7 +54,7 @@ function SettingsPage() {
                 ppdbEndDate: settings.ppdbEndDate ? new Date(settings.ppdbEndDate) : null
             }
 
-            const response = await fetch('http://localhost:5001/api/settings', {
+            const response = await fetch(`${API_BASE_URL}/api/settings`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(dataToSend)

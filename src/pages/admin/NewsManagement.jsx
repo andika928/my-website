@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Newspaper, Search, Edit, Trash2, Plus, Loader2, Save, X, Eye } from 'lucide-react'
 import './AdminPages.css'
+import API_BASE_URL from '../../config/api'
 
 function NewsManagement() {
     const [news, setNews] = useState([])
@@ -20,7 +21,7 @@ function NewsManagement() {
     const fetchNews = async () => {
         setLoading(true)
         try {
-            const response = await fetch('http://localhost:5001/api/news')
+            const response = await fetch(`${API_BASE_URL}/api/news`)
             if (response.ok) {
                 const data = await response.json()
                 setNews(data)
@@ -69,7 +70,7 @@ function NewsManagement() {
     const handleDelete = async (id) => {
         if (!confirm('Apakah Anda yakin ingin menghapus berita ini?')) return
         try {
-            const response = await fetch(`http://localhost:5001/api/news/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/news/${id}`, {
                 method: 'DELETE'
             })
             if (response.ok) fetchNews()
@@ -81,8 +82,8 @@ function NewsManagement() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const url = editMode
-            ? `http://localhost:5001/api/news/${currentId}`
-            : 'http://localhost:5001/api/news'
+            ? `${API_BASE_URL}/api/news/${currentId}`
+            : `${API_BASE_URL}/api/news`
         const method = editMode ? 'PUT' : 'POST'
 
         try {

@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import './PPDBPage.css'
 import PPDBProofModal from '../../components/ppdb/PPDBProofModal'
+import API_BASE_URL from '../../config/api'
 
 const steps = [
     { id: 1, label: 'Data Diri', icon: User },
@@ -107,7 +108,7 @@ function PPDBPage() {
             if (files.akta) formDataToSend.append('akta', files.akta);
             if (files.photo) formDataToSend.append('photo', files.photo);
 
-            const response = await fetch('http://localhost:5001/api/ppdb', {
+            const response = await fetch(`${API_BASE_URL}/api/ppdb`, {
                 method: 'POST',
                 // Content-Type header is automatically set by browser for FormData
                 body: formDataToSend
@@ -146,7 +147,7 @@ function PPDBPage() {
         setIsCheckingStatus(true)
 
         try {
-            const response = await fetch(`http://localhost:5001/api/ppdb/${checkStatus}`)
+            const response = await fetch(`${API_BASE_URL}/api/ppdb/${checkStatus}`)
 
             if (response.ok) {
                 const data = await response.json()

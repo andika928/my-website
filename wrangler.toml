@@ -1,0 +1,9 @@
+name = "sekolah-website"
+compatibility_date = "2024-01-01"
+
+[site]
+bucket = "./dist"
+
+[vars]
+# Replace this with your actual deployed backend URL (e.g. https://my-api.onrender.com)
+VITE_API_BASE_URL = "https://backend-andika.onrender.com"

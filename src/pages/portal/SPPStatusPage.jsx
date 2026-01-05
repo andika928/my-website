@@ -3,6 +3,7 @@ import { Wallet, CheckCircle, AlertCircle, Download, Loader2, Upload, X, Clock, 
 import { useToast } from '../../components/ui/Toast' // Adjusted path
 import InvoiceModal from '../../components/payment/InvoiceModal'
 import './SPPStatusPage.css'
+import API_BASE_URL from '../../config/api'
 
 function SPPStatusPage() {
     const { addToast } = useToast()
@@ -16,7 +17,7 @@ function SPPStatusPage() {
         setLoading(true)
         try {
             const token = localStorage.getItem('token')
-            const response = await fetch('http://localhost:5001/api/spp/my-payments', {
+            const response = await fetch(`${API_BASE_URL}/api/spp/my-payments`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -77,7 +78,7 @@ function SPPStatusPage() {
         try {
             setLoading(true)
             const token = localStorage.getItem('token')
-            const response = await fetch(`http://localhost:5001/api/spp/upload-proof/${selectedPayment.id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/spp/upload-proof/${selectedPayment.id}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`

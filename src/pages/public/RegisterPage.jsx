@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Eye, EyeOff, Lock, User, GraduationCap, ArrowRight, ShieldAlert } from 'lucide-react'
 import './LoginPage.css' // Reuse login styles
+import API_BASE_URL from '../../config/api'
 
 const RegisterPage = () => {
     const navigate = useNavigate()
@@ -30,7 +31,9 @@ const RegisterPage = () => {
         setError('')
 
         try {
-            const response = await fetch('http://localhost:5001/api/auth/register', {
+            // ... in fetch call:
+            const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

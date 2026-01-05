@@ -3,6 +3,7 @@ import { Receipt, Search, Download, CheckCircle, AlertCircle, Plus, Loader2, Sav
 import { useToast } from '../../components/ui/Toast' // Import Toast
 import InvoiceModal from '../../components/payment/InvoiceModal'
 import './AdminPages.css'
+import API_BASE_URL from '../../config/api'
 
 function SPPManagement() {
     const { addToast } = useToast() // Init hook
@@ -24,7 +25,7 @@ function SPPManagement() {
         setLoading(true)
         try {
             const token = localStorage.getItem('token')
-            const response = await fetch('http://localhost:5001/api/spp', {
+            const response = await fetch(`${API_BASE_URL}/api/spp`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -51,7 +52,7 @@ function SPPManagement() {
     const fetchStudents = async () => {
         try {
             const token = localStorage.getItem('token')
-            const response = await fetch('http://localhost:5001/api/students', {
+            const response = await fetch(`${API_BASE_URL}/api/students`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -88,7 +89,7 @@ function SPPManagement() {
         e.preventDefault()
         try {
             const token = localStorage.getItem('token')
-            const response = await fetch('http://localhost:5001/api/spp', {
+            const response = await fetch(`${API_BASE_URL}/api/spp`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -116,7 +117,7 @@ function SPPManagement() {
         if (!confirm('Apakah Anda yakin ingin menghapus data pembayaran ini?')) return
         try {
             const token = localStorage.getItem('token')
-            const response = await fetch(`http://localhost:5001/api/spp/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/spp/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -137,7 +138,7 @@ function SPPManagement() {
         if (!confirm('Tandai pembayaran ini sebagai LUNAS (Pembayaran Manual/Tunai)?')) return
         try {
             const token = localStorage.getItem('token')
-            const response = await fetch(`http://localhost:5001/api/spp/${id}/status`, {
+            const response = await fetch(`${API_BASE_URL}/api/spp/${id}/status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -161,7 +162,7 @@ function SPPManagement() {
         if (!verifyModal) return
         try {
             const token = localStorage.getItem('token')
-            const response = await fetch(`http://localhost:5001/api/spp/verify/${verifyModal.id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/spp/verify/${verifyModal.id}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -351,7 +352,7 @@ function SPPManagement() {
 
                             <div className="proof-container mt-4 mb-4" style={{ textAlign: 'center' }}>
                                 <img
-                                    src={`http://localhost:5001/${verifyModal.proofFile}`}
+                                    src={`${API_BASE_URL}/${verifyModal.proofFile}`}
                                     alt="Bukti Transfer"
                                     style={{ maxWidth: '100%', maxHeight: '300px', borderRadius: '8px', border: '1px solid #ddd' }}
                                 />

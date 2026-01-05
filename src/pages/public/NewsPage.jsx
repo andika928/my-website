@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Calendar, ArrowRight, Search, BookOpen, Tag, Loader2 } from 'lucide-react'
 import './NewsPage.css'
+import API_BASE_URL from '../../config/api'
 
 function NewsPage() {
     const [news, setNews] = useState([])
@@ -14,7 +15,7 @@ function NewsPage() {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const response = await fetch('http://localhost:5001/api/news')
+                const response = await fetch(`${API_BASE_URL}/api/news`)
                 if (response.ok) {
                     const data = await response.json()
                     // Filter only published news for public view

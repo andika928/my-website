@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { MessageSquare, Search, Trash2, Loader2, RefreshCw, Mail } from 'lucide-react'
 import './AdminPages.css'
+import API_BASE_URL from '../../config/api'
 
 function ContactManagement() {
     const [messages, setMessages] = useState([])
@@ -10,7 +11,7 @@ function ContactManagement() {
     const fetchMessages = async () => {
         setLoading(true)
         try {
-            const response = await fetch('http://localhost:5001/api/contact')
+            const response = await fetch(`${API_BASE_URL}/api/contact`)
             if (response.ok) {
                 const data = await response.json()
                 setMessages(data)
@@ -29,7 +30,7 @@ function ContactManagement() {
     const handleDelete = async (id) => {
         if (!confirm('Apakah Anda yakin ingin menghapus pesan ini?')) return
         try {
-            const response = await fetch(`http://localhost:5001/api/contact/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/contact/${id}`, {
                 method: 'DELETE'
             })
             if (response.ok) fetchMessages()

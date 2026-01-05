@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Users, Search, Edit, Trash2, Plus, Download, Loader2, Save, X, Lock, Key } from 'lucide-react'
 import { useToast } from '../../components/ui/Toast'
 import './AdminPages.css'
+import API_BASE_URL from '../../config/api'
 
 function DataSiswa() {
     const [students, setStudents] = useState([])
@@ -30,7 +31,7 @@ function DataSiswa() {
     const fetchStudents = async () => {
         setLoading(true)
         try {
-            const response = await fetch('http://localhost:5001/api/students')
+            const response = await fetch(`${API_BASE_URL}/api/students`)
             if (response.ok) {
                 const data = await response.json()
                 setStudents(data)
@@ -89,7 +90,7 @@ function DataSiswa() {
     const handleDelete = async (id) => {
         if (!confirm('Apakah Anda yakin ingin menghapus data siswa ini?')) return
         try {
-            const response = await fetch(`http://localhost:5001/api/students/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/students/${id}`, {
                 method: 'DELETE'
             })
             if (response.ok) {
@@ -105,7 +106,7 @@ function DataSiswa() {
 
     const handleCreateAccount = async (student) => {
         try {
-            const response = await fetch(`http://localhost:5001/api/students/${student.id}/create-account`, {
+            const response = await fetch(`${API_BASE_URL}/api/students/${student.id}/create-account`, {
                 method: 'POST'
             })
             if (response.ok) {
@@ -131,8 +132,8 @@ function DataSiswa() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const url = editMode
-            ? `http://localhost:5001/api/students/${currentId}`
-            : 'http://localhost:5001/api/students'
+            ? `${API_BASE_URL}/api/students/${currentId}`
+            : `${API_BASE_URL}/api/students`
         const method = editMode ? 'PUT' : 'POST'
 
         try {
